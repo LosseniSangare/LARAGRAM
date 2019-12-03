@@ -5,86 +5,88 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header font-weight-bold h3 text-center">{{ __('Modifier votre profil') }}</div>
-
+                <div class="card-header">{{ __('Modifier votre profil') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('profile.update',["user"=>"$user->username"]) }}">
+
+                    <form method="post" action="{{ route('profile.update',compact('user')) }}" enctype="multipart/form-data">
                         @csrf
-                        @method('PATCH');
+                        @method('PATCH')
+
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="Titre" class="ml-3 col-form-label text-md-right">{{ __('TITRE') }}</label>
 
-                            <div class="col-md-6">
-                               <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                  name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
+                            <div class="col-md-12">
+                                <input id="Titre" type="Titre" class="form-control @error('Titre') is-invalid @enderror" name="Titre" value="{{ $user->profile->Titre ?? old('Titre') }}"  autocomplete="Titre" autofocus>
 
-                                @error('name')
+                                @error('Titre')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
+
+                                </div>
+
                         </div>
 
 
+
+
                         <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+                            <label for="description" class="ml-3 col-form-label text-md-right">{{ __('URL') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="username" type="text" class="form-control
-                                @error('username') is-invalid @enderror" name="username"
-                                   value="{{ $user->username }}" required autocomplete="username" autofocus>
-
-                                @error('username')
+                            <div class="col-md-12">
+                              <textarea name="description" rows="5" class="col-md-12"> {{$user->profile->description}}</textarea>
+                                @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
+
+                                </div>
+
                         </div>
 
+
+
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="url" class="ml-3 col-form-label text-md-right">{{ __('URL') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                   name="email" value="{{ $user->email}}" required autocomplete="email">
+                            <div class="col-md-12">
+                                <input id="url" type="url" class="form-control @error('url') is-invalid @enderror" name="url" value="{{ $user->profile->url ?? old('url') }}"  autocomplete="url" autofocus>
 
-                                @error('email')
+                                @error('url')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
+
+                                </div>
+
                         </div>
+
+
+
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="image" id="validatedCustomFile"  class="ml-3 col-form-label text-md-right">{{ __('IMAGE') }}</label>
+                            <div class="custom-file col-md-12 ">
+                              <input type="file" name="image" class="custom-file-input @error ('image') is-invalid  @enderror" id="validatedCustomFile" >
+                              <label class="custom-file-label" for="validatedCustomFile">Choisir l'image</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                                   name="password" required autocomplete="new-password" >
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                              @error('image')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
                             </div>
-                        </div>
+                          </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-6 offset-md-4 mt-2">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Modifier mon profile') }}
                                 </button>
                             </div>
                         </div>

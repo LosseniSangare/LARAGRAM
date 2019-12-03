@@ -49,4 +49,9 @@ class User extends Authenticatable
     public function posts(){
       return $this->hasMany('App\Posts')->orderBy('created_at','DESC');
     }
+
+
+    public function isAdmin(){
+      return false;
+    }
 }

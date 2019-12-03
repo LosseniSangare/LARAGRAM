@@ -21,9 +21,12 @@
                     <span class="mr-3"> <strong>0</strong>abonnés  </span>
                     <span class="mr-3"> <strong>0</strong>abonnements </span>
                   </div>
-                  <div class="mt-5 ml-3">
-                    <a href="{{route('profile.edit',compact('user'))}}" class="btn btn-outline-secondary text-center"><strong> Modifier mes information</strong></a>
-                  </div>
+                 @can ('update', $user->profile)
+                      <div class="mt-5 ml-3">
+                      <a href="{{route('profile.edit',compact('user'))}}" class="btn btn-outline-success text-center"><strong> Modifier mes information</strong></a>
+                    </div>
+                @endcan
+
                   <div class="mt-5">
 
                       <div class=" h5"> <strong>{{$user->profile->Titre}}</strong> </div>

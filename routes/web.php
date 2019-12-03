@@ -20,7 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile.show/{user}','profileController@show')->name('profile.show');
 Route::get('profile.edit/{user}','profileController@edit')->name('profile.edit');
-Route::patch('profile.update/{user}','profileController@')->name('profile.update');
+Route::patch('profile.update/{user}','profileController@update')->name('profile.update');
+
 Route::get('posts.create','postController@create')->name('posts.create');
 Route::post('posts.create','postController@store')->name('posts.store');
 Route::get('posts.show/{post}','postController@show')->name('posts.show');
