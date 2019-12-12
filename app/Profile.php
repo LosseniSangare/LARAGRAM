@@ -13,4 +13,13 @@ class Profile extends Model
     public function user(){
       return $this->belongsTo('App\Users');
     }
+
+
+		public function getImage(){
+			$imagePath = $this->image ?? 'avatar/user-default.png';
+			return "/storage/".$imagePath ;
+		}
+		public function followers(){
+			return $this->belongsToMany('App\User');
+		}
 }

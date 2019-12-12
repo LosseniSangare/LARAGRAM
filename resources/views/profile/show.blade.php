@@ -6,20 +6,25 @@
 
         <div class="row mt-4">
 	        	<div class="col-md-3 text-center mb-5">
-	        		<img src="{{asset('svg/profile.jpeg')}}" class="rounded-circle" width="140px" height="120px">
+	        		<img src="{{$user->profile->getImage()}}" class="rounded-circle border border-info  w-50" style="/*border: 3px groove #aaaaff*/" > <!--width="140px" height="120px" -->
 	        	</div>
 
 	        	<div class="col-md-9">
 
 	        		<div class="d-flex">
 			        		<div class=" h3 mr-3">{{$user->username}}</div>
-			        		<button class="btn btn-primary  pt-2">S'abonner</button>
+			        		<follow-button profile-id="{{$user->profile->id}}" follows="{{$follows}}"></follow-button>
 					    </div>
+
+              {{-- <div class="d-flex">
+                <a href="{{route('follows.store',with(['profile'=>$user->profile->id]))}}" class="btn btn-primary  pt-2">S'abonner 2</a>
+
+              </div> --}}
 
                   <div class=" mt-3">
                     <span class="mr-3"> <strong>{{$user->posts->count()}}</strong> publications </span>
-                    <span class="mr-3"> <strong>0</strong>abonnés  </span>
-                    <span class="mr-3"> <strong>0</strong>abonnements </span>
+                    <span class="mr-3"> <strong>{{$user->profile->followers->count()}}</strong>abonnés  </span>
+                    <span class="mr-3"> <strong>{{$user->following->count()}}</strong>abonnements </span>
                   </div>
                  @can ('update', $user->profile)
                       <div class="mt-5 ml-3">

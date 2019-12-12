@@ -37,7 +37,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+public static function boot(){
+  parent::boot();
 
+  static::created(function($user){
+    $user->profile()->create([
+      'Titre'=>'Le profil de '.$user->username
+    ]);
+  });
+}
 
     public function getRouteKeyName(){
         return 'username';
@@ -50,6 +58,10 @@ class User extends Authenticatable
       return $this->hasMany('App\Posts')->orderBy('created_at','DESC');
     }
 
+
+public function following(){
+return  $this->belongsToMany('App\Profile');
+}
 
     public function isAdmin(){
       return false;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Posts;
 
 class postController extends Controller
